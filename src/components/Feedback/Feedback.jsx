@@ -1,89 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import styles from './Feedback.module.scss';
 
-class Feedback extends React.Component {
-    state = {
-        valueGood: 0,
-        valueNeutral: 0,
-        valueBad: 0,
-        total: 0,
-        positive: 0,
+const Feedback = () => {
+    const [good, setGood] = useState(0);
+    const [neutral, setNeutral] = useState(0);
+    const [bad, setBad] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [positive, setPositive] = useState(0);
+
+    const handleGood = () => {
+        setGood(prevGood => prevGood + 1);
+        countTotalFeedback();
     };
 
-    handleGood = () => {
-        this.setState(
-            prevValue => ({
-                valueGood: prevValue.valueGood + 1,
-            }),
-            this.countTotalFeedback(),
-        );
-    };
-    handleNeutral = () => {
-        this.setState(
-            {
-                valueNeutral: this.state.valueNeutral + 1,
-            },
-            this.countTotalFeedback(),
-        );
-    };
-    handleBad = () => {
-        this.setState(
-            {
-                valueBad: this.state.valueBad + 1,
-            },
-            this.countTotalFeedback(),
-        );
-    };
-    countTotalFeedback = () => {
-        this.setState(
-            prevValue => ({
-                total: prevValue.total + 1,
-            }),
-            this.countPositiveFeedbackPercentage(),
-        );
-    };
-    countPositiveFeedbackPercentage = () => {
-        this.setState(prevValue => ({
-            positive: Math.round((prevValue.valueGood / prevValue.total) * 100),
-        }));
+    const handleNeutral = () => {
+        setNeutral(prevNeutral => prevNeutral + 1);
+        countTotalFeedback();
     };
 
-    render() {
-        return (
+    const handleBad = () => {
+        setBad(prevBad => prevBad + 1);
+
+        countTotalFeedback();
+    };
+
+    const countTotalFeedback = () => {
+        setTotal(prevTotal => prevTotal + 1);
+        countPositiveFeedbackPercentage();
+    };
+
+    const countPositiveFeedbackPercentage = () => {
+        setPositive(prevPositive => prevPositive * (good / total) * 100);
+    };
+
+    return (
+        <>
+            <h1 className={styles.title}>Please leave Feedback</h1>
             <div className={styles.container}>
-                <h2 className={styles.title}>Please leave Feedback</h2>
                 <div>
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={this.handleGood}
+                        onClick={handleGood}
                     >
                         Good
                     </button>
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={this.handleNeutral}
+                        onClick={handleNeutral}
                     >
                         Neutral
                     </button>
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={this.handleBad}
+                        onClick={handleBad}
                     >
                         Bad
                     </button>
                 </div>
-                <h2 className={styles.title}>Statistics</h2>
-                <span>Good: {this.state.valueGood}</span>
-                <span>Neutral: {this.state.valueNeutral}</span>
-                <span>Bad: {this.state.valueBad}</span>
-                <span>Total: {this.state.total}</span>
-                <span>Positive FeedBack: {this.state.positive}%</span>
+                <h2 className={styles.title__stat}>Statistics</h2>
+                <d>Good: {good}</d>
+                <d>Neutral: {neutral}</d>
+                <d>Bad: {bad}</d>
+                <d>Total: {countTotalFeedback}</d>
+                <d>Positive FeedBack: {countPositiveFeedbackPercentage}%</d>
             </div>
-        );
-    }
-}
-
+        </>
+    );
+};
 export default Feedback;

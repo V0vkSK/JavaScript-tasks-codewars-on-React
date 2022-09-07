@@ -1,9 +1,19 @@
 .container{
     display: flex;
     flex-direction: column;
+    margin-left: 200px;
 }
 .title{
     margin-bottom: 20px;
+    margin-left: 100px;
+    
+    
+}
+.title__stat{
+    margin-bottom: 20px;
+    
+    
+    
 }
 .button{
           border: 0;

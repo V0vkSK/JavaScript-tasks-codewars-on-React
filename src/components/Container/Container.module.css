@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  padding-left: 50px;
+  padding-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}/*# sourceMappingURL=Container.module.css.map */

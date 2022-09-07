@@ -1,47 +1,47 @@
 import styles from './css/app.module.scss';
 
 import Container from './components/Container/Container';
-import { Route, Router, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import HomePage from './Pages/HomePage'
 import Feedback from './components/Feedback/Feedback';
-import NotFound from './components/NotFound'
+import BooksPage from './components/BooksPage/BooksPage';
+import AuthorsPage from './components/AuthorsPage/AuthorsPage';
+import BookDetails from './components/BookDetails/BookDetails';
+import Tests from './Pages/Tests'
 
 
-// import HomeView from './Pages/HomeView';
 
 
 const App = () => {
-  return (    
-  <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-        </ul>
+  
+  return (
 
-        
-          <Route path="/about">
-            <HomePage />
-          </Route>
-          <Route path="/topics">
-            <HomePage />
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        
-      </div>
-    </Router>
+    <div className={styles.app}>
+     
+    <Header/>
+    <Container> 
+      <Routes>
+    
+        <Route path="/" element={<HomePage />} />
+        <Route path="/feedback-page" element={<Feedback />} />
+        <Route path="/books-page" element={<BooksPage />} />
+        <Route path="/books/:id" element={<BookDetails />} />
+        <Route path="/authors-page" element={<AuthorsPage />} />
+        <Route path="/tests" element={<Tests />} />
+        <Route
+            path="*"
+            element={<h1 className={styles.not__found}>404 -Page not found</h1>}
+          />
+      </Routes>
+    </Container>
+
+
+    </div>
   )
 }
 
+
 export default App;
+

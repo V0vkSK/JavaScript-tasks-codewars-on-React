@@ -2,6 +2,7 @@
     
     // z-index: 1000;
     // margin-bottom: 70px; */
+        position: relative;
 
     display: flex;
     width: 100%;
@@ -10,7 +11,7 @@
     align-items: center;
 }
 .container {
-    position: relative;
+            
     display: flex;
     width: 1400px;
     margin-right: auto;
@@ -25,14 +26,49 @@
     span {
         color: red;
     }
-    .nav {
-        
-        display: block;
-        
-        
-        background: #4676d7;
+ 
+}
+
+.list__nav{
+    display: flex;
+    align-items: center;
+    
+    list-style: none;
+}
+   .nav {
+        text-decoration: none;
+        background: #43d609;
         color: #fff;
+        border: 0;
+
         padding: 8px 16px;
         font-size: 16px;
-    }
+        border-radius: 5px;
+        margin-right: 20px;
+        
+        &:hover{
+            background: #130665;
+            color: rgb(0, 191, 255);
+        }
+      
+      } 
+    
+ .active{
+            text-decoration: none;
+
+            padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-right: 20px;
+        background: #130665;
+            color: rgb(0, 191, 255);
+           }    
+
+.drop    {
+    position: absolute;
+
+    display: flex;
+    top: 100%;
+    left: 43%;
 }
+
