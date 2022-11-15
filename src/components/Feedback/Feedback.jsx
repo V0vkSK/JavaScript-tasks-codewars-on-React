@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 import styles from './Feedback.module.scss';
 
@@ -9,8 +10,11 @@ const Feedback = () => {
     const [total, setTotal] = useState(0);
     const [positive, setPositive] = useState(0);
 
+    useEffect(() => {
+        setPositive(Math.round((good / total) * 100));
+    }, [total]);
     const handleGood = () => {
-        setGood(prevGood => prevGood + 1);
+        setGood(good + 1);
         countTotalFeedback();
     };
 
@@ -27,12 +31,15 @@ const Feedback = () => {
 
     const countTotalFeedback = () => {
         setTotal(prevTotal => prevTotal + 1);
-        countPositiveFeedbackPercentage();
+        // countPositiveFeedbackPercentage();
     };
 
-    const countPositiveFeedbackPercentage = () => {
-        setPositive(prevPositive => prevPositive * (good / total) * 100);
-    };
+    // const countPositiveFeedbackPercentage = () => {
+    //     setPositive(prevPositive => prevPositive * (good / total) * 100);
+    // console.log(good);
+    // console.log(total);
+    // console.log(positive);
+    // };
 
     return (
         <>
@@ -65,8 +72,8 @@ const Feedback = () => {
                 <d>Good: {good}</d>
                 <d>Neutral: {neutral}</d>
                 <d>Bad: {bad}</d>
-                <d>Total: {countTotalFeedback}</d>
-                <d>Positive FeedBack: {countPositiveFeedbackPercentage}%</d>
+                <d>Total: {total}</d>
+                <d>Positive FeedBack: {positive > 0 ? positive : 0}%</d>
             </div>
         </>
     );

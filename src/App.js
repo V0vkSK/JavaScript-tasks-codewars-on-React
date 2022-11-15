@@ -10,6 +10,7 @@ import BooksPage from './components/BooksPage/BooksPage';
 import AuthorsPage from './components/AuthorsPage/AuthorsPage';
 import BookDetails from './components/BookDetails/BookDetails';
 import Tests from './Pages/Tests'
+import ToDo from './Pages/ToDo';
 
 
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/books-page" element={<BooksPage />} />
         <Route path="/books/:id" element={<BookDetails />} />
         <Route path="/authors-page" element={<AuthorsPage />} />
+        <Route path="/todo-page" element={<ToDo />} />
         <Route path="/tests" element={<Tests />} />
         <Route
             path="*"

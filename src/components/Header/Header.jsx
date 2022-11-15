@@ -35,6 +35,15 @@ const Header = () => {
                         Feedback
                     </NavLink>
                     <NavLink
+                        exact
+                        className={({ isActive }) =>
+                            isActive ? styles.active : styles.nav
+                        }
+                        to="/todo-page"
+                    >
+                        ToDo
+                    </NavLink>
+                    <NavLink
                         className={styles.nav}
                         onClick={onClick}
                         to="/books-page"
